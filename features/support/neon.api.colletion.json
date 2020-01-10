@@ -1,0 +1,186 @@
+{
+	"info": {
+		"_postman_id": "1ef79859-cc16-4fa7-b189-65f9c5b179c7",
+		"name": "Neon",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "films",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "704ebc42-81a7-4a17-af95-107a82c69d8e",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"",
+							"    ",
+							"var test = JSON.parse(responseBody);",
+							"postman.return(\"results\", test.title);",
+							"",
+							"console.log(test.title)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://swapi.co/api/films/",
+					"protocol": "https",
+					"host": [
+						"swapi",
+						"co"
+					],
+					"path": [
+						"api",
+						"films",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://swapi.co/api/films/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "56df54c7-c726-4ec4-bde3-7116454ef4d2",
+						"exec": [
+							"pm.test(\"Teste\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    console.log(\"Meu teste:\", jsonData.count);",
+							"    ",
+							"    var varTitles;",
+							"    for(var i=0; i<jsonData.results.length; i++)",
+							"    {",
+							"        if(i===0)",
+							"        {",
+							"            varTitles = jsonData.results[i].title;          ",
+							"        }",
+							"        else",
+							"        {",
+							"            varTitles = varTitles + \", \" + jsonData.results[i].title;",
+							"        }",
+							"    }",
+							"    ",
+							"    console.log(\"Titles:\", varTitles);",
+							"    console.log(\"Meu teste2:\", jsonData);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://swapi.co/api/films/",
+					"protocol": "https",
+					"host": [
+						"swapi",
+						"co"
+					],
+					"path": [
+						"api",
+						"films",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://swapi.co/api/planets/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c8fc18bd-c9bc-4ade-b263-ac97a435f0ce",
+						"exec": [
+							"var jsonData;",
+							"",
+							"pm.test(\"Check amount planets\", function () {",
+							"    jsonData = pm.response.json();",
+							"    console.log(\"Quantidade de planetas:\", jsonData.count);",
+							"    console.log(\"Teste2:\", jsonData.results.length)",
+							"    console.log(\"Teste:\", jsonData.results[9].name)",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://swapi.co/api/planets/",
+					"protocol": "http",
+					"host": [
+						"swapi",
+						"co"
+					],
+					"path": [
+						"api",
+						"planets",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://swapi.co/api/planets/?count=64",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "34c81056-9afe-423a-b07b-38a350fe1a4e",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"    console.log(\"teste:\", pm.response.message);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://swapi.co/api/planets/?count=64",
+					"protocol": "http",
+					"host": [
+						"swapi",
+						"co"
+					],
+					"path": [
+						"api",
+						"planets",
+						""
+					],
+					"query": [
+						{
+							"key": "count",
+							"value": "64"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
